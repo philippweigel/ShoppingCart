@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<VBox alignment="TOP_CENTER" spacing="10" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.shoppingcart.ShoppingCartController">
+    <Label text="Shopping Cart Application" />
+
+    <!-- Customer Selection -->
+    <HBox spacing="10" alignment="CENTER">
+        <Label text="Customer:" />
+        <ComboBox fx:id="customerComboBox" />
+    </HBox>
+
+    <!-- Product Selection by Name or Category -->
+    <HBox spacing="10" alignment="CENTER">
+        <Label text="Item Search:" />
+        <TextField fx:id="itemSearchField" />
+        <Button text="Search" fx:id="searchButton" onAction="#onSearchButtonClick"  />
+    </HBox>
+
+    <!-- Product List -->
+    <TableView fx:id="itemTable">
+        <columns>
+            <TableColumn fx:id="nameColumn" text="Item Name" />
+            <TableColumn fx:id="categoryColumn" text="Category" />
+            <TableColumn fx:id="priceColumn" text="Price" />
+        </columns>
+    </TableView>
+
+    <!-- Quantity Selection and Add to Cart Button -->
+    <HBox spacing="10" alignment="CENTER">
+        <Label text="Quantity:" />
+        <TextField fx:id="quantityField" />
+        <Button text="Add to Cart" fx:id="addToCartButton" onAction="#onAddToCartButtonClick"/>
+    </HBox>
+
+    <!-- Shopping Cart Display -->
+    <Label text="Shopping Cart:" />
+    <TableView fx:id="orderItemTable">
+        <columns>
+            <TableColumn fx:id="orderItemNameColumn" text="Item Name" />
+            <TableColumn fx:id="orderItemQuantityColumn" text="Quantity" />
+            <TableColumn fx:id="orderItemPriceColumn" text="Price" />
+        </columns>
+    </TableView>
+
+    <!-- Total Price Display and Checkout Button -->
+    <HBox spacing="10" alignment="CENTER">
+        <Label text="Total Price:" />
+        <Label fx:id="totalPriceLabel" />
+        <Button text="Checkout" fx:id="checkoutButton" onAction="#onCheckoutButtonClick" />
+    </HBox>
+
+    <!-- Remove from Cart Button -->
+    <HBox spacing="10" alignment="CENTER">
+        <Button text="Remove Selected from Cart" fx:id="removeFromCartButton" onAction ="#onRemoveFromCartButtonClick" />
+    </HBox>
+</VBox>
