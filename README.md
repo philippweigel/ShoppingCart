@@ -1,11 +1,12 @@
 # ShoppingCart
 
-## Demo
-https://github.com/philippweigel/ShoppingCart/assets/15524907/2e285aea-2dd0-4c32-9f5f-65fef5f19a7f
-
 ## Description
 
 ShoppingCartFX is a easy-to-use JavaFX-based application that provides a shopping cart system. It allows for the selection of a customer, searching of products by name or category, listing of products with their details, adding and removing items from the shopping cart, and eventually checking out items, persisting the results in a MySQL database.
+
+## Demo
+
+https://github.com/philippweigel/ShoppingCart/assets/15524907/2820bcc1-b412-489d-954b-a17e11ac2758
 
 ## Features
 
@@ -33,6 +34,10 @@ ShoppingCartFX is a easy-to-use JavaFX-based application that provides a shoppin
 5. Remove items from the cart by clicking the 'Remove' button next to the item in the cart
 6. View the total price and quantity of items in your cart at any time
 7. Checkout by clicking the 'Checkout' button. This will save your transaction to the MySQL database
+
+
+
+
 
 
 
