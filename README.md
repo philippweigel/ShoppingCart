@@ -15,7 +15,9 @@ ShoppingCartFX is a easy-to-use JavaFX-based application that provides a shoppin
 
 ## Setup & Installation
 - Clone the repo:
-  git clone https://github.com/yourusername/ShoppingCartFX.git
+  ```
+  git clone https://github.com/yourusername/ShoppingCartFX.git)
+  ```
 - Import the project into your favorite Java IDE (like IntelliJ IDEA or Eclipse)
 - Ensure that you have MySQL Server installed and running on your system 
 - Update src/main/resources/config.properties with your MySQL server details
@@ -28,3 +30,4 @@ ShoppingCartFX is a easy-to-use JavaFX-based application that provides a shoppin
 5. Remove items from the cart by clicking the 'Remove' button next to the item in the cart
 6. View the total price and quantity of items in your cart at any time
 7. Checkout by clicking the 'Checkout' button. This will save your transaction to the MySQL database
+
