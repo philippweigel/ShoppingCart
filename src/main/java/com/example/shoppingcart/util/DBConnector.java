@@ -1,34 +1,47 @@
 package com.example.shoppingcart.util;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.Properties;
 
 public class DBConnector {
 
     private static Connection conn;
-    private static String url = "jdbc:mysql://localhost:3306/markolon";
-    private static String user = "markolon";//Username of database
-    private static String pass = "1234asdf";//Password of database
 
-    public static Connection connect() throws SQLException {
+    static {
         try {
-            Class.forName("com.mysql.jdbc.Driver").newInstance();
-        } catch (ClassNotFoundException cnfe) {
-            System.err.println("Error Class not found: " + cnfe.getMessage());
-        } catch (InstantiationException ie) {
-            System.err.println("Error Instantiation Exception: " + ie.getMessage());
-        } catch (IllegalAccessException iae) {
-            System.err.println("Error Illegal AccessException: " + iae.getMessage());
+            InputStream is = DBConnector.class.getClassLoader().getResourceAsStream("config.properties");
+            Properties properties = new Properties();
+            if (is != null) {
+                properties.load(is);
+                String dbHost = properties.getProperty("db.host");
+                String dbPort = properties.getProperty("db.port");
+                String dbName = properties.getProperty("db.name");
+                String dbUser = properties.getProperty("db.user");
+                String dbPassword = properties.getProperty("db.password");
+
+                String url = "jdbc:mysql://" + dbHost + ":" + dbPort + "/" + dbName;
+                try {
+                    Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
+                    conn = DriverManager.getConnection(url, dbUser, dbPassword);
+                } catch (ClassNotFoundException | InstantiationException | IllegalAccessException e) {
+                    System.err.println("Error loading MySQL Driver: " + e.getMessage());
+                }
+            } else {
+                throw new RuntimeException("Failed to find config.properties file");
+            }
+        } catch (IOException | SQLException e) {
+            throw new RuntimeException("Failed to establish database connection", e);
         }
-        conn = DriverManager.getConnection(url, user, pass);
-        return conn;
     }
 
-    public static Connection getConnection() throws SQLException, ClassNotFoundException {
+    public static Connection connect() throws SQLException {
         if (conn != null && !conn.isClosed())
             return conn;
-        connect();
-        return conn;
+        else
+            throw new SQLException("Failed to establish a database connection");
     }
 }
